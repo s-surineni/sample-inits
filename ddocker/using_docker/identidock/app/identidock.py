@@ -33,7 +33,7 @@ def mainpage():
 @app.route('/monster/<name>')
 def get_identicon(name):
     print('thoreau calling dnmonster')
-    r = requests.get('http://dnmonster:3001/' + name)
+    r = requests.get('http://localhost:3001/' + name)
     image = r.content
     return Response(image, mimetype='image/png')
 
