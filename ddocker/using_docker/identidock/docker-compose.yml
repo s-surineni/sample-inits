@@ -6,12 +6,12 @@ identidock:
     ENV: DEV
   volumes:
     - ./app:/app
-  links:
-    - dnmonster
+  # links:
+  #   - dnmonster
   # depends_on:
   #   - dnmonster
 
-dnmonster:
-  image: royletron/robohash
-  ports:
-    - "3001:3001"
+# dnmonster:
+#   image: royletron/robohash
+#   ports:
+#     - "3001:3001"

@@ -32,11 +32,15 @@ def mainpage():
 
 @app.route('/monster/<name>')
 def get_identicon(name):
-    print('thoreau calling dnmonster')
-    r = requests.get('http://localhost:3001/' + name)
+    # print('thoreau calling dnmonster')
+    r = requests.get('http://dnmonster:8080/monster/' + name + '?size=80')
     image = r.content
     return Response(image, mimetype='image/png')
 
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
+
+# commands to run dnmonster and identidock
+# docker run   --name dnmonster amouat/dnmonster:1.0
+# docker run  -p 5000:5000 -e "ENV=DEV" --link dnmonster:dnmonster identidock
