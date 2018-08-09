@@ -8,10 +8,14 @@ identidock:
     - ./app:/app
   links:
     - dnmonster
+    - redis
   # depends_on:
   #   - dnmonster
 
 dnmonster:
   image: amouat/dnmonster:1.0
+
+redis:
+  image: redis:3.0
 #   ports:
 #     - "3001:3001"

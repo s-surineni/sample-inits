@@ -5,7 +5,7 @@ RUN groupadd -r uwsgi && useradd -r -g uwsgi uwsgi
 # ENV HTTPS_PROXY "http://www-proxy.us.oracle.com:80"
 # ENV FTP_PROXY "http://www-proxy.us.oracle.com:80"
 
-RUN pip install Flask==0.10.1 uWSGI requests==2.5.1
+RUN pip install Flask==0.10.1 uWSGI requests==2.5.1 redis==2.10.3
 WORKDIR /app
 COPY app /app
 COPY cmd.sh /
