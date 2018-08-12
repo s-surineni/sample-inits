@@ -4,7 +4,7 @@ services:
     image: nginx:latest
     container_name: ng01
     ports:
-      - "8000:8000"
+      - "80:80"
     volumes:
       - ./src:/src
       - ./config/nginx:/etc/nginx/conf.d
@@ -12,6 +12,7 @@ services:
       - web
 
   web:
+    restart: always
     build: .
     container_name: dg01
     command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn mydjango.wsgi -b 0.0.0.0:8000"
