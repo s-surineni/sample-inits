@@ -14,3 +14,8 @@
      (message "The result is %d" (* 7 number)))
 
 (interactive-multiply-by-7 3)
+
+;; demonstrates setting values to the return value of function
+(setq result (multiply-by-7 3))
+
+result
