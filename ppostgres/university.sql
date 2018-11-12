@@ -26,3 +26,15 @@ select course_id from section where semester='Fall' and year=2009 except select 
 
 
 -- The Cartesian-Product ×
+-- select * from instructor, teaches where dept_name='Physics';
+select * from instructor, teaches where dept_name='Physics';
+
+select * from instructor, teaches where dept_name='Physics' and instructor.id = teaches.id;
+
+-- find the highest salary in the university
+select salary from instructor except select instructor.salary from instructor, instructor as d where instructor.salary < d.salary;
+
+-- find the names of all instructors together with course_id of all courses they taught
+select name, course_id from instructor natural join teaches;
+
+select name, title from instructor natural join teaches natural join course where dept_name = 'Comp. Sci.';
