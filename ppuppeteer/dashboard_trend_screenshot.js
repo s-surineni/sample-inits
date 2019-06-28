@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer');
+const https = require('https');
+const http = require('http');
 
 const searchable = process.argv.includes('--searchable');
 
@@ -55,11 +57,105 @@ const avisoURL = 'http://localhost:8090';
     // await page.setViewport({width: 1200, height: 800, deviceScaleFactor: 2});
     // await page.setViewport({width: 1200, height: 800});
 
-    await page.waitFor(3000);
+    // await page.waitFor(3000);
     const trend = await page.$('.trend');
     await trend.screenshot({path: 'trend.png'});
 
+    await http.get(avisoURL + '/userslist', (resp) => {
+        let data = '';
+        console.log('Got response: in userslist in async' + resp.statusCode);
+
+    }).on('error', (err) => {
+        console.log('Error: ' + err.message);
+    });
+    
+    get_user_hierarchies();
 
     await browser.close();
 }
 )();
+
+function get_csrf_token() {
+    return new Promise((resolve, reject) => {
+        http.get(avisoURL + '/csrfform', (resp) => {
+            // console.log('From CSRFform');
+            let data = '';
+            // console.log('Got response: ' + resp.statusCode);
+            resp.on('data', chunk => {
+                // console.log('BODY: ' + chunk);
+                // chunk = JSON.stringify(chunk);
+                chunk = '' + chunk;
+                // console.log(`after stringify ${chunk}`);
+                const string_parts = chunk.split("'");
+                // console.log(string_parts);
+                csrf_token = string_parts[string_parts.length - 2];
+                resolve(csrf_token);
+                // return csrf_token;
+                // console.log(`csrf_token ${csrf_token}`);
+            });
+        }).on('error', (err) => {
+            console.log('Error: ' + err.message);
+            reject(err.message);
+        });
+    });
+    
+}
+
+function get_user_hierarchies() {
+    const get_csrf_token_prom = get_csrf_token();
+
+    get_csrf_token_prom.then(csrf_token => {
+        console.log(`inside get_user_hierarchies ${csrf_token}`);
+        var options = {
+            hostname: 'localhost',
+            // port: '8090',
+            port: '5000',
+            // path: '/account/login',
+            path: '/',
+            method: 'POST',
+            headers: {'X-CSRFToken': csrf_token,
+                      REFERER: 'http://localhost:8090'}
+        };
+
+        console.log(`value in options ${options.headers['X-CSRFToken']}`);
+        console.log(`value in options ${JSON.stringify(options)}`);
+
+        const data = JSON.stringify ({
+            username: process.env.AVISO_USER,
+            password: process.env.AVISO_PWD
+        });
+
+        console.log(`csrf in data ${data} ${csrf_token}`);
+        const req = http.request(options, (res) => {
+            console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+            console.log(`statusCode in login: ${res.statusCode}`);
+
+            res.on('data', (d) => {
+                process.stdout.write(d);
+            });
+            
+        });
+
+        req.write(data);
+        req.end();
+    });
+    
+    http.get(avisoURL + '/access/login', (resp) => {
+        let data = '';
+        console.log('Got response: ' + resp.statusCode);
+
+    }).on('error', (err) => {
+        console.log('Error: ' + err.message);
+    });
+    
+    http.get(avisoURL + '/userslist', (resp) => {
+        let data = '';
+        console.log('Got response: in userslist ' + resp.statusCode);
+
+    }).on('error', (err) => {
+        console.log('Error: ' + err.message);
+    });
+}
+
+
+get_user_hierarchies();

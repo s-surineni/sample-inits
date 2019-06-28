@@ -31,4 +31,4 @@ let circle = svgContainer.append("line")
 console.log(body.select('.container').html());
 
 // Output the result to file
-fs.writeFileSync(outputLocation, body.select('.container').html());
+fs.writeFileSync(outputLocation, body.select('.container').html())
