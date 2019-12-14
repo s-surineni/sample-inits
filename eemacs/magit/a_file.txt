@@ -1,1 +1,1 @@
-Sample file to cause conflict ed
+Sample file to cause conflict ed v1
