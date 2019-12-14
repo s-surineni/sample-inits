@@ -1,1 +1,1 @@
-Sample file to cause conflict 
+Sample file to cause conflict master
