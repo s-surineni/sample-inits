@@ -1,0 +1,5 @@
+* run celery from inside django project
+#+BEGIN_SRC shell
+celery -A proj worker -l info
+#+END_SRC
+* if an error occurs check if you have added app in settings.py file
