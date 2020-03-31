@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "500931866718",
+    "firebase_url": "https://ionicsamlearn.firebaseio.com",
+    "project_id": "ionicsamlearn",
+    "storage_bucket": "ionicsamlearn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500931866718:android:a126333c12caf4845a44cf",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500931866718-mcc37rvbe9cnsbluedt3m7uuhc64f0hg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5yUCvf3Tbsvi3nEpGhRjYMbWXR7s420c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500931866718-mcc37rvbe9cnsbluedt3m7uuhc64f0hg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
