@@ -4,6 +4,7 @@ import logging
 from channels import Group
 from channels.sessions import channel_session
 from .models import Room
+from channels.generic.websocket import WebsocketConsumer
 
 log = logging.getLogger(__name__)
 
@@ -77,4 +78,4 @@ def ws_disconnect(message):
         Group('chat-'+label, channel_layer=message.channel_layer).discard(message.reply_channel)
     except (KeyError, Room.DoesNotExist):
         pass
-© 2020 GitHub, Inc.
+

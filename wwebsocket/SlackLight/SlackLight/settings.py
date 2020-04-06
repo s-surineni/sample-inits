@@ -126,7 +126,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CHANNEL_LAYERS = {
     "default": {
@@ -137,3 +137,5 @@ CHANNEL_LAYERS = {
         "ROUTING": "chat.routing.channel_routing",
     },
 }
+
+ASGI_APPLICATION = 'SlackLight.routing.application'
