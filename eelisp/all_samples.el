@@ -12,3 +12,49 @@
   (message "String is %s" (read-file-name "Enter file name:")))
 
 (ff)
+
+
+(setq settings-files ("1" "2"))
+(defun get-settings-file ()
+
+  (interactive "P")
+  (let ((settings-file
+         (completing-read "Use this file for loading: "
+                          settings-files))
+        )
+    (settings-file)))
+
+
+(print (get-settings-file))
+
+
+(setq settings-files ("1" "2"))
+(defun get-settings-file ()
+
+  (interactive "P")
+  (let ((settings-file
+         (read-file-name "Use this file for loading: "
+                         ))
+        )
+    settings-file))
+
+
+(print (get-settings-file))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq settings-files '("~/ironman/myemacs/init.el" "2"))
+
+(defun get-settings-file ()
+
+  (interactive "P")
+  (let ((settings-file
+         (completing-read "Use this file for loading: "
+                          settings-files))
+        )
+    settings-file))
+
+
+(load-file (get-settings-file))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
