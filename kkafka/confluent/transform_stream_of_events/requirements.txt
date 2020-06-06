@@ -1,1 +1,5 @@
-confluent-kafka==1.4.2
+avro==1.9.2
+avro-python3==1.8.2
+bpython==0.19
+confluent-kafka==1.4.0
+fastavro==0.23.4

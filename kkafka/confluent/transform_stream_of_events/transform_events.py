@@ -4,12 +4,13 @@ import sys
 
 # from avro.io import
 from configparser import ConfigParser
-from confluent_kafka import Consumer, KafkaError, Producer
 from confluent_kafka.admin import AdminClient, NewTopic
+from confluent_kafka.avro import AvroConsumer, AvroProducer
 from confluent_kafka.serialization import StringDeserializer
 from confluent_kafka.serialization import StringSerializer
 
 from .transformation_engine import TransformationEngine
+from .utils import get_absolute_file_path, load_schema_from_file
 
 logging.basicConfig(format='%(levelname)s:%(message)s',
                     level=logging.DEBUG)
@@ -31,9 +32,12 @@ class TransformEvents:
         consumer_props['enable.auto.commit'] = True
         consumer_props['auto.offset.reset'] = 'earliest' # what is this??
         consumer_props['bootstrap.servers'] = env_props['bootstrap.servers']
+        consumer_props['schema.registry.url'] = env_props['schema.registry.url']
         # consumer_props['key.deserializer.class'] = StringDeserializer
         # consumer_props['key.serializer.class'] = StringSerializer
         # consumer_props[]
+        print('consumer props')
+        print(consumer_props)
         return consumer_props
 
     def build_producer_properties(self, env_props):
@@ -42,14 +46,19 @@ class TransformEvents:
         producer_props['bootstrap.servers'] = env_props['bootstrap.servers']
         # producer_props[]
         # not yet supported in python??
-        # producer_props['schema.registry.url'] = env_props['schema.registry.url']
+        producer_props['schema.registry.url'] = env_props['schema.registry.url']
         return producer_props
 
     def create_raw_movie_consumer(self, consumer_props):
-        return Consumer(consumer_props)
+        return AvroConsumer(consumer_props)
 
     def create_movie_producer(self, producer_props):
-        return Producer(producer_props)
+        schema_file_name = 'parsed-movies.avsc'
+        schema_file_path = get_absolute_file_path(schema_file_name)
+        key_schema, value_schema = load_schema_from_file(schema_file_path)
+        return AvroProducer(producer_props,
+                            default_key_schema=key_schema,
+                            default_value_schema=value_schema)
 
     def create_topics(self, kafka_config):
         config = {'bootstrap.servers': kafka_config['bootstrap.servers']}
@@ -77,8 +86,7 @@ class TransformEvents:
 
     def start_transformation(self):
         config = ConfigParser()
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        props_file_path = os.path.join(dir_path, self.props_file_path)
+        props_file_path = get_absolute_file_path(self.props_file_path)
         config.read(props_file_path)
         kafka_config = config['kafka']
         config_dict = {}
