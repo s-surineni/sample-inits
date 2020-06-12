@@ -17,7 +17,8 @@ def signup(request):
             return redirect('home')
     else:
         form = UserCreationForm()
-    return render(request, 'core/signup.html', {'form': form})
+    # return render(request, 'core/signup.html', {'form': form})
+    return render(request, 'core/signup2.html', {'form': form})
 
 
 def home(request):
