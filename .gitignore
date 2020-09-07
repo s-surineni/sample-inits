@@ -12,6 +12,7 @@ node_modules
 *.tmp.*
 *.sublime-project
 *.sublime-workspace
+*.class
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
@@ -33,3 +34,5 @@ npm-debug.log*
 /platforms
 /plugins
 /www
+
+**/.idea

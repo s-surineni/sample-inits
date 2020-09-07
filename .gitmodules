@@ -1,0 +1,3 @@
+[submodule "summer-code-jam-2020-qualifier"]
+	path = summer-code-jam-2020-qualifier
+	url = git@github.com:python-discord/summer-code-jam-2020-qualifier.git
