@@ -15,8 +15,8 @@ export enum SearchType {
     providedIn: 'root'
 })
 export class MovieService {
-    // url = 'http://www.omdbapi.com/';
-    url = 'http:localhost:5000/';
+    url = 'http://www.omdbapi.com/';
+    // url = 'http:localhost:5000/';
 
     apiKey = '23103a4c'; // <-- Enter your own key here!
 
@@ -27,25 +27,25 @@ export class MovieService {
     constructor(private http: HttpClient) { }
 
     /**
-    * Get data from the OmdbApi 
+    * Get data from the OmdbApi
     * map the result to return only the results that we need
-    * 
+    *
     * @param {string} title Search Term
     * @param {SearchType} type movie, series, episode or empty
     * @returns Observable with the search results
     */
     searchData(title: string, type: SearchType): Observable<any> {
-        // return this.http.get(`${this.url}?s=${encodeURI(title)}&type=${type}&apikey=${this.apiKey}`).pipe(
-        //     map(results => results['Search'])
-        // );
-        return this.http.get(`${this.url}`).pipe(
-            map(results => console.log(JSON.stringify(results)))
-        )
+        return this.http.get(`${this.url}?s=${encodeURI(title)}&type=${type}&apikey=${this.apiKey}`).pipe(
+            map(results => results['Search'])
+        );
+        // return this.http.get(`${this.url}`).pipe(
+        //     map(results => console.log(JSON.stringify(results)))
+        // )
     }
 
     /**
     * Get the detailed information for an ID using the "i" parameter
-    * 
+    *
     * @param {string} id imdbID to retrieve information
     * @returns Observable with detailed information
     */
