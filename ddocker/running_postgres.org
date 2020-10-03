@@ -1,0 +1,20 @@
+* create docker volume
+#+begin_src bash
+docker volume create pgdata
+#+end_src
+* run docker image
+#+begin_src
+docker run -it --rm -v pgdata:/var/lib/postgresql/data --name postgres postgres
+docker run -it --rm -v pgdata:/var/lib/postgresql/data postgres
+docker run -it --rm --name postgres -v pgdata:/var/lib/postgresql/data postgres
+--name postgres
+#+end_src
+* connect to docker container
+#+begin_src
+docker exec -it 82 bash
+docker exec -it mypostgres bash
+#+end_src
+* load data from tar file
+#+begin_src bash
+docker exec -i postgres pg_restore -U postgres -F t -d dvdrental < ~/Downloads/dvdrental.tar
+#+end_src
