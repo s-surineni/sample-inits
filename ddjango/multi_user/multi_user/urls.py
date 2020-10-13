@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from multiauth.views import SignUpView
+from multiauth.views import SignUpView, student_signup, teacher_signup
 
 urlpatterns = [
-    # path('', include('multiauth.urls')),
+    path('', include('multiauth.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', SignUpView.as_view(), name='signup'),
-    path('admin/', admin.site.urls),
+    path('accounts/signup/student/', student_signup, name='student_signup'),
+    path('accounts/signup/teacher/', teacher_signup, name='teacher_signup'),    path('admin/', admin.site.urls),
 ]
