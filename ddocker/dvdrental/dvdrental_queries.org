@@ -1,0 +1,17 @@
+* get number of rentals of a customer
+#+begin_src sql
+select count(*), customer_id from customer group by customer_id order by customer_id;
+#+end_src
+* get number of movies an actor has acted in
+#+begin_src sql
+select count(*), a.actor_id, first_name, last_name from actor a
+inner join film_actor fa on a.actor_id = fa.actor_id
+inner join film f on f.film_id = fa.film_id
+group by a.actor_id;
+#+end_src
+* get all movies of actor with id 58
+#+begin_src sql
+select title from film f
+inner join film_actor fa on f.film_id = fa.film_id
+where actor_id = 58;
+#+end_src
