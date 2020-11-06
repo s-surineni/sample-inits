@@ -1,0 +1,8 @@
+* start redis
+#+begin_src bash
+docker run --rm --name rredis  rredis
+#+end_src
+* connect to redis by linking
+#+begin_src bash
+docker run --rm  --name rrcli -it rredis redis-cli -h rredis
+#+end_src
