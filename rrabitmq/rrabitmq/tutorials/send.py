@@ -4,7 +4,7 @@ credentials = pika.PlainCredentials('guest', 'guest')
 connection = pika.BlockingConnection(pika.ConnectionParameters(
     # host='0.0.0.0',
                                                                host='some-rabbit',
-                                                               port=5672,
+    port=5672,
     credentials=credentials))
 channel = connection.channel()
 
