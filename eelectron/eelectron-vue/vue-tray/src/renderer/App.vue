@@ -5,17 +5,20 @@
 </template>
 
 <script>
-  export default {
-    name: 'vue-tray'
-  }
-</script>
 import bus from '@/bus'
+
+export default {
+  name: 'vue-tray',
+
   mounted () {
     bus.$on('ping', () => {
       // event logic
       console.log('pong')
     })
   }
+}
+</script>
+
 <style>
-  /* CSS */
+/* CSS */
 </style>

@@ -1,5 +1,5 @@
 import bus from './bus'
-import { remote } from 'electron'
+import {remote} from 'electron'
 
 /**
  * I copied a font-awesome png to my clipboard for this example
@@ -11,13 +11,13 @@ import { remote } from 'electron'
  */
 const tray = new remote.Tray(remote.clipboard.readImage())
 const menu = remote.Menu.buildFromTemplate([
-    {
-        label: 'ping',
-        click () {
-            // Send event to Vue
-            bus.$emit('ping')
-        }
+  {
+    label: 'ping',
+    click () {
+      // Send event to Vue
+      bus.$emit('ping')
     }
+  }
 ])
 
 tray.setToolTip('hello world')
