@@ -5,15 +5,18 @@
 </template>
 
 <script>
-import bus from '@/bus'
+// import bus from '@/bus'
 
 export default {
   name: 'vue-tray',
 
   mounted () {
-    bus.$on('ping', () => {
-      // event logic
-      console.log('pong')
+    // bus.$on('ping', () => {
+    //   // event logic
+    //   console.log('pong')
+    // })
+    this.$electron.ipcRenderer.on('ping', e => {
+      console.log('Tray menu clicked: `pong`')
     })
   }
 }
