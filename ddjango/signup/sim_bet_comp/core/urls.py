@@ -5,7 +5,4 @@ from django.urls import include, path
 
 from . import views
 
-urlpatterns = [
-    path('signup', views.signup),
-    path('home', views.home, name='home')
-]
+urlpatterns = [path("signup/", views.signup), path("home", views.home, name="home")]
