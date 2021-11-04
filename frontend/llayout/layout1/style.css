@@ -48,3 +48,22 @@ a:link,a:visited
     padding: 0px 0px 0px 0px;
     width:100%;
 }
+
+.grid
+{
+  overflow: hidden;
+  width: 90%;
+  padding: 20px 0px 0px 20px;
+  margin: 0px auto;
+}
+
+.shade
+{
+  float:left;
+  position:inherit;
+  background-color: #000;
+  opacity: .5;
+  height: auto;
+  width: 100%;
+  z-index: -1;
+}
