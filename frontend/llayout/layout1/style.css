@@ -1,16 +1,13 @@
-*
-{
-  box-sizing:border-box;
-  -moz-box-sizing:border-box;
+nav {
+  position: fixed;
 }
 
-nav
-{
-  margin: 0px;
-  position: fixed;
-  float: right;
-  color: #fff;
+.shade {
+  position:inherit;
+  background-color: #CCFFCC;
+  width: 100%;
 }
+
 
 ul
 {
@@ -39,31 +36,5 @@ a:link,a:visited
   border-radius: 4px;
   transition: background-color .5s;
   -webkit-transition: background-color .5s;
-  opacity: 1; !important
-}
-
-.page-container
-{
-  ​  margin: 0px auto;
-    padding: 0px 0px 0px 0px;
-    width:100%;
-}
-
-.grid
-{
-  overflow: hidden;
-  width: 90%;
-  padding: 20px 0px 0px 20px;
-  margin: 0px auto;
-}
-
-.shade
-{
-  float:left;
-  position:inherit;
-  background-color: #000;
-  opacity: .5;
-  height: auto;
-  width: 100%;
-  z-index: -1;
+  opacity: 1;
 }
